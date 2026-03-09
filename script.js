@@ -6,19 +6,23 @@ function toggleMenu() {
 }
 
 function reveal() {
-  var reveals = document.querySelectorAll(".reveal");
-  for (var i = 0; i < reveals.length; i++) {
-    var windowHeight = window.innerHeight;
-    var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 150;
+  const reveals = document.querySelectorAll(".reveal");
+  for (let i = 0; i < reveals.length; i++) {
+    const windowHeight = window.innerHeight;
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    const elementVisible = 100; // Reduced slightly for better mobile triggering
+    
     if (elementTop < windowHeight - elementVisible) {
       reveals[i].classList.add("active");
     }
   }
 }
 
+// Attach to both scroll and load events
 window.addEventListener("scroll", reveal);
-// To check the scroll position on page load
+window.addEventListener("load", reveal); // Critical for Vercel deployments
+
+// Run once immediately
 reveal();
 
 const glow = document.querySelector('.cursor-glow');
