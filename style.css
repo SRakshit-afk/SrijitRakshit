@@ -691,17 +691,20 @@ body::before {
 }
 
 /* REVEAL ANIMATIONS */
+/* REVEAL ANIMATIONS */
 .reveal {
   position: relative;
-  transform: translateY(50px);
+  transform: translateY(30px); /* Reduced from 50px */
   opacity: 0;
-  transition: 1s all ease;
+  transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  will-change: transform, opacity; /* Helps the browser pre-calculate the animation */
 }
 
 .reveal.active {
   transform: translateY(0);
   opacity: 1;
 }
+
 
 .cursor-glow {
   width: 150px;
