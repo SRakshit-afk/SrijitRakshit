@@ -48,62 +48,108 @@
 }
 
 @media screen and (max-width: 600px) {
+  /* --- Section: Photography About --- */
+  .photo-about-container { 
+    display: flex !important; 
+    flex-direction: column !important; /* Forces top-to-bottom stacking */
+    width: 100%;
+    gap: 3rem; 
+  }
+  
+  .photo-about-text {
+    width: 100% !important;
+    order: 1; /* Guarantees text appears first */
+  }
+
+  .photo-about-img-container {
+    width: 100% !important;
+    order: 2; /* Guarantees image appears underneath the text */
+    display: flex;
+    justify-content: center;
+  }
+
+  .photo-about-img {
+    width: 80vw !important; /* Uses viewport width to size it nicely on mobile */
+    max-width: 300px; /* Stops it from getting too huge on tablets */
+    height: auto !important;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* --- Section: General Layout & Heights --- */
   #contact,
   footer {
-    height: 40vh;
+    height: auto; /* 'vh' heights often break on mobile; auto lets content breathe */
+    padding-bottom: 2rem;
   }
+  
   #profile {
-    height: 83vh;
-    margin-bottom: 0;
+    min-height: 80vh; /* Changed from height to min-height to prevent text spilling out */
+    height: auto;
+    margin-bottom: 2rem;
   }
-  article {
-    font-size: 1rem;
+
+  /* --- Section: Typography & Reading UX --- */
+  article { font-size: 1rem; }
+  .title { font-size: 2rem; }
+  .experience-sub-title { font-size: 1.25rem; }
+  .logo { font-size: 1.5rem; }
+  
+  .text-container {
+    text-align: center; /* Replaced 'justify'. Justified text creates awkward gaps on mobile */
   }
+
+  /* --- Section: Navigation --- */
   footer nav {
     height: fit-content;
     margin-bottom: 2rem;
   }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 1.5rem; /* Increased gap for better mobile touch targets */
+    text-align: center;
+  }
+
+  /* --- Section: Flexbox Containers --- */
   .about-containers,
   .contact-info-upper-container,
   .btn-container {
     flex-wrap: wrap;
+    justify-content: center; /* Centers buttons and cards when they wrap */
+    gap: 1rem; /* Ensures buttons don't physically touch each other */
   }
+
   .contact-info-container {
-    margin: 0;
+    margin: 0.5rem 0; /* Gives stacked contact items breathing room */
   }
+  
   .contact-info-container p,
   .nav-links li a {
     font-size: 1rem;
   }
-  .experience-sub-title {
-    font-size: 1.25rem;
-  }
-  .logo {
-    font-size: 1.5rem;
-  }
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
+
+  /* --- Section: Image Scaling --- */
   .section__pic-container {
-    width: auto;
-    height: 46vw;
-    justify-content: center;
+    width: 60vw; /* Keeps the aspect ratio perfectly square */
+    height: 60vw; 
+    max-width: 250px;
+    max-height: 250px;
+    margin: 0 auto 2rem auto; /* Ensures it stays centered */
   }
+
+  /* --- Section: Hero Text --- */
   .section__text {
-    min-width: 100%; /* Let it be fluid on mobile */
+    min-width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Keeps your hero text centered */
   }
   
   .section__text__p2 {
     font-size: 1.25rem;
-    white-space: normal; /* Allow wrapping on small screens */
-    min-height: 4rem; /* More height for wrapped text */
-  }
-  .title {
-    font-size: 2rem;
-  }
-  .text-container {
-    text-align: justify;
+    white-space: normal; 
+    min-height: auto; /* Removed fixed min-height to let text wrap naturally */
+    margin-bottom: 1rem;
   }
 }

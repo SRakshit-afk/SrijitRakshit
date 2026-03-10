@@ -569,18 +569,41 @@ body {
 body::before {
   content: "";
   position: absolute;
-  top: -10vh; /* Pulls it slightly above the screen to hide the hard edge */
-  left: -5vw;
-  width: 110vw; /* Stretches past the edges so the blur doesn't cut off */
-  height: 70vh; /* Controls how far down the page the aurora drops */
+  top: -10vh;
+  left: -10vw;
+  width: 110vw;
+  height: 80vh;
+  /* Complex radial gradients for the aurora colors */
   background: 
-    radial-gradient(ellipse at top left, rgba(0, 229, 255, 0.45) 0%, transparent 60%), /* Cyan top-left */
-    radial-gradient(ellipse at top right, rgba(0, 123, 255, 0.55) 0%, transparent 60%), /* Electric Blue top-right */
-    radial-gradient(ellipse at top center, rgba(138, 43, 226, 0.35) 0%, transparent 60%); /* Soft Purple top-center */
-  filter: blur(60px);
-  z-index: -1; /* Keeps it strictly in the background */
+    radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 123, 255, 0.55) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(138, 43, 226, 0.35) 0%, transparent 50%);
+  background-size: 200% 200%; /* Makes the background larger so it can pan around */
+    z-index: -1;
   pointer-events: none;
-  animation: aurora-breathe 8s ease-in-out infinite alternate;
+  /* The new 15-second fluid animation */
+  animation: liquid-aurora 5s infinite alternate ease-in-out;
+
+/* The updated mask with a built-in Gaussian Blur */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: cover;
+    mask-position: bottom;
+}
+
+@keyframes liquid-aurora {
+  0% {
+    background-position: 0% 0%;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    background-position: 100% 100%;
+    transform: scale(1.05) rotate(1deg) translateY(20px);
+  }
+  100% {
+    background-position: 0% 100%;
+    transform: scale(1) rotate(-1deg) translateX(-20px);
+  }
 }
 
 /* Makes the aurora gently pulse and shift */

@@ -4,6 +4,70 @@
     padding: 2rem 10% 8rem 10%;
 }
 
+/* --- PHOTOGRAPHY ABOUT SECTION --- */
+#photo-about {
+    margin-top: 2rem;
+    margin-bottom: 10rem; /* Creates good breathing room before the Series section */
+}
+
+.photo-about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.about-desc {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2.5rem;
+}
+
+.photo-about-roles {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Stylish pill-shaped badges for your roles */
+.role-badge {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid #007BFF;
+    color: #007BFF;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.role-badge:hover {
+    background: #007BFF;
+    color: white;
+}
+
+.photo-about-img-container {
+    position: relative;
+}
+
+.photo-about-img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    /* Gives the photo a slightly desaturated, vintage editorial feel */
+    filter: grayscale(30%); 
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.photo-about-img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
 /* --- PHOTO SERIES SECTION --- */
 .series-container {
     margin: 4rem 0 8rem 0;
@@ -292,4 +356,28 @@
     .entry-preview { display: none; }
     .solo-grid { grid-template-columns: 1fr; }
     .scroll-btn { width: 40px; height: 40px; }
+}
+
+/* Adds a hidden overflow to the frame so the zoom doesn't break the layout */
+.solo-item {
+    overflow: hidden; 
+    border-radius: 2px;
+}
+
+/* The camera focus animation */
+.reveal.active .solo-item img {
+    animation: lens-focus 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes lens-focus {
+    0% { 
+        transform: scale(1.1); 
+        filter: blur(8px); 
+        opacity: 0;
+    }
+    100% { 
+        transform: scale(1); 
+        filter: blur(0px); 
+        opacity: 1;
+    }
 }
