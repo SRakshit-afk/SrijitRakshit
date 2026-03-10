@@ -1,90 +1,295 @@
 /* photography.css */
 
-/* 1. LAYOUT & CENTERING */
-#coming-soon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 70vh; /* Centers content between the nav and footer */
-  padding: 0 2rem;
+.gallery-wrapper {
+    padding: 2rem 10% 8rem 10%;
 }
 
-#coming-soon .section__text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+/* --- PHOTO SERIES SECTION --- */
+.series-container {
+    margin: 4rem 0 8rem 0;
 }
 
-/* 2. TITLES & TYPOGRAPHY */
-#coming-soon .title {
-  font-size: 4rem;
-  margin: 0.5rem 0;
-  /* Applying a gradient that matches your Aurora theme */
-  background: linear-gradient(to right, #007BFF, #8A2BE2);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
+.series-info {
+    max-width: 600px;
+    margin-bottom: 1rem;
 }
 
-#coming-soon .section__text__p1 {
-  color: #007BFF;
-  font-size: 1.25rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-#coming-soon .section__text__p2 {
-  font-size: 1.1rem;
-  max-width: 500px;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-/* 3. BUTTON STYLING */
-#coming-soon .btn-container {
-  margin-top: 1rem;
-}
-
-/* 4. RESPONSIVE ADJUSTMENTS */
-@media screen and (max-width: 600px) {
-  #coming-soon .title {
-    font-size: 2.5rem;
-  }
-  
-  #coming-soon .section__text__p1 {
+.series-info h2 {
     font-size: 1rem;
-  }
-  
-  #coming-soon {
-    height: 60vh;
-  }
+    color: #353535;
+    margin-bottom: 2rem;
 }
 
-/* 5. LIGHTBOX & GALLERY (Keeping these for when you launch) */
-.gallery-grid {
-  display: none; /* Hidden for now since we are in 'Coming Soon' mode */
+.series-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
+.series-horizontal-scroll {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding-bottom: 2rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.series-horizontal-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.series-img {
+    height: 500px;
+    width: auto;
+    border-radius: 4px;
+    scroll-snap-align: start;
+    transition: transform 0.4s ease;
+    cursor: zoom-in;
+}
+
+.series-img:hover {
+    transform: scale(1.02);
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.scroll-btn:hover { background: #007BFF; transform: translateY(-50%) scale(1.1); }
+.scroll-btn:hover img { filter: brightness(0) invert(1); }
+.scroll-btn img { width: 20px; height: 20px; }
+.scroll-btn.left { left: -25px; }
+.scroll-btn.right { right: -25px; }
+
+/* --- INDEPENDENT GRID --- */
+.solo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 8rem;
+}
+
+.solo-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    cursor: zoom-in;
+}
+
+.solo-item figcaption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+/* --- HIGH-END JOURNAL MAKEOVER --- */
+.journal-wrapper {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12rem; /* Wide spacing for a gallery feel */
+}
+
+/* Base Journal Entry (Left Aligned) */
+.journal-entry {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Changed from 1fr 2fr 1fr to a 2-column layout */
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+/* Reversed Journal Entry (Right Aligned) */
+.journal-entry.entry-reverse {
+    grid-template-columns: 2fr 1fr;
+    text-align: right;
+}
+
+.entry-meta {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #333;
+    padding-left: 20px;
+}
+
+/* Meta alignment for reversed entry */
+.journal-entry.entry-reverse .entry-meta {
+    grid-column: 2;
+    border-left: none;
+    border-right: 1px solid #333;
+    padding-left: 0;
+    padding-right: 20px;
+    align-items: flex-end;
+}
+
+.journal-entry.entry-reverse .entry-main {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.entry-number {
+    font-size: 3rem;
+    font-weight: 200;
+    color: #9f9f9f;
+}
+
+.entry-date {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: #007BFF;
+}
+
+.entry-title {
+    font-size: 4rem;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+    z-index: 2;
+    position: relative;
+    transition: color 0.3s ease;
+
+    display: inline-block; /* Makes the border hug the text tightly */
+    border: 3px solid transparent; /* Invisible border so the layout doesn't jump */
+    padding: 10px 20px; /* Gives the text some breathing room inside the border */
+    margin-left: -20px; /* Pulls it back to the left so it aligns perfectly with the text below */
+}
+
+.entry-title .italic {
+    font-family: serif;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.entry-excerpt {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 400px;
+    margin-left: 20px;
+    margin-bottom: 1.5rem;
+}
+
+/* Excerpt alignment for reversed entry */
+.journal-entry.entry-reverse .entry-excerpt {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.entry-link {
+    display: inline-block;
+    margin-left: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.entry-link:hover {
+    color: #007BFF;
+    padding-left: 10px;
+}
+
+.journal-entry.entry-reverse .entry-link {
+    margin-left: 0;
+}
+
+.journal-entry.entry-reverse .entry-link:hover {
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+/* Image Previews Positioning */
+.entry-preview {
+    position: absolute;
+    width: 280px;
+    height: 380px;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0.1;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(100%);
+}
+
+.entry-preview img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+/* Left entry preview peeks from the right */
+.journal-entry:not(.entry-reverse) .entry-preview {
+    right: -5%;
+    transform: translateY(20px) rotate(2deg);
+}
+
+/* Right entry preview peeks from the left */
+.journal-entry.entry-reverse .entry-preview {
+    left: -5%;
+    transform: translateY(20px) rotate(-2deg);
+}
+
+.journal-entry:hover .entry-preview {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: translateY(-20px) rotate(0deg);
+}
+
+.journal-entry:hover .entry-title { 
+  color: #007BFF;
+-webkit-text-stroke: 1px #000;
+ }
+
+/* --- LIGHTBOX & CURSOR --- */
 .lightbox {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  padding-top: 5vh;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    position: fixed;
+    z-index: 20000;
+    padding-top: 50px;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .lightbox-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 85vh;
-  border-radius: 0.5rem;
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn { from { transform: scale(0.8); } to { transform: scale(1); } }
+
+.close-lightbox {
+    position: absolute;
+    top: 25px; right: 40px;
+    color: #fff; font-size: 40px; cursor: pointer;
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 900px) {
+    .journal-entry { grid-template-columns: 1fr; gap: 2rem; }
+    .entry-title { font-size: 2.5rem; }
+    .entry-preview { display: none; }
+    .solo-grid { grid-template-columns: 1fr; }
+    .scroll-btn { width: 40px; height: 40px; }
 }

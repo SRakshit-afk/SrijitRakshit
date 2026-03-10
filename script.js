@@ -73,3 +73,42 @@ function typeEffect() {
 
 // Start the effect
 document.addEventListener("DOMContentLoaded", typeEffect);
+
+function scrollSeries(direction, seriesId) {
+    const container = document.getElementById(seriesId);
+    if(container) {
+        const scrollAmount = container.clientWidth * 0.8;
+        container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".close-lightbox");
+
+    // Select all images inside your photography sections
+    const images = document.querySelectorAll(".series-img, .solo-item img");
+
+    images.forEach(img => {
+        img.onclick = function() {
+            lightbox.style.display = "block";
+            lightboxImg.src = this.src; // Sets full screen image to clicked image source
+            document.body.style.overflow = "hidden"; // Prevents background scrolling
+        }
+    });
+
+    // Close when 'X' is clicked
+    closeBtn.onclick = function() {
+        lightbox.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    // Close when clicking outside the image
+    lightbox.onclick = function(e) {
+        if (e.target !== lightboxImg) {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    }
+});
