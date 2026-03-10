@@ -321,6 +321,8 @@ section {
 .about-details-container {
   justify-content: center;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .about-containers,
@@ -329,6 +331,9 @@ section {
 }
 
 .about-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the 400x400 square without stretching */
   border-radius: 2rem;
 }
 
@@ -354,9 +359,11 @@ section {
 }
 
 .section__pic-container {
-  height: 400px;
-  width: 400px;
-  margin: auto 0;
+  display: flex;
+  height: 400px; /* Restores the desktop height */
+  width: 400px;  /* Restores the desktop width */
+  margin: auto;
+  flex-shrink: 0;
 }
 
 /* EXPERIENCE SECTION */
