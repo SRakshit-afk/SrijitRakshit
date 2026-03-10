@@ -76,6 +76,34 @@
     display: block;
   }
   
+  /* --- Skills Section Mobile Fix --- */
+  
+  /* 1. Stop the main glass boxes from spilling off the screen */
+  .details-container {
+    width: 100%;
+    padding: 2rem 1rem; /* Reduces horizontal padding to save space */
+    box-sizing: border-box; /* Forces padding to stay inside the width */
+  }
+
+  /* 2. Change the 2-column grid into a clean 1-column stack */
+  .article-container {
+    grid-template-columns: 1fr; /* Single column layout for phones */
+    gap: 1rem;
+  }
+
+  /* 3. Re-center the text inside the full-width badges */
+  article {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 1.5rem;
+    justify-content: flex-start; /* Keeps the checkmark on the left */
+  }
+
+  /* Keep the font size readable but not too large */
+  article div h3 {
+    font-size: 1rem;
+  }
+
   /* --- Section: General Layout & Heights --- */
   #contact,
   footer {
@@ -151,5 +179,33 @@
     white-space: normal; 
     min-height: auto; /* Removed fixed min-height to let text wrap naturally */
     margin-bottom: 1rem;
+  }
+
+  /* --- Terminal Mobile Fixes --- */
+  .terminal-header {
+    justify-content: flex-start; /* Aligns everything to the left */
+  }
+
+  .terminal-title {
+    position: static; /* Removes the absolute centering */
+    width: auto;
+    margin-left: 15px; /* Adds breathing room between the green dot and the text */
+    text-align: left;
+    
+    /* These three lines ensure long text gets cut off with "..." instead of wrapping */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .terminal-text {
+    padding: 12px; /* Slightly tighter padding for small screens */
+    font-size: 0.875rem; /* Scales the font down slightly so it fits better */
+  }
+
+  /* Ensures long commands or descriptions don't cause horizontal scrolling */
+  .output, .prompt, .terminal-text p {
+    word-wrap: break-word; 
+    white-space: normal;
   }
 }

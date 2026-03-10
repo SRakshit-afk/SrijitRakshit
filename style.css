@@ -7,13 +7,29 @@
   padding: 0;
 }
 
+
 body {
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
+  width: 100%;
+  clip-path: inset(0 0 0 0);
 }
 
 html {
   scroll-behavior: smooth;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* 3. Ensure the hamburger menu doesn't push the screen right */
+.menu-links {
+  max-width: 90vw;
+  box-sizing: border-box;
 }
 
 p {
@@ -210,6 +226,7 @@ section {
 
 .section__text__p1 {
   text-align: center;
+  font-size: 1rem;
 }
 
 .section__text__p2 {
@@ -361,25 +378,54 @@ section {
   flex-direction: column;
 }
 
+/* --- UPGRADED SKILLS GRID --- */
 .article-container {
-  display: flex;
-  text-align: initial;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 2.5rem;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Forces exactly two neat columns */
+  gap: 1.2rem;
+  width: 100%;
 }
 
 article {
   display: flex;
-  width: 12rem; /* Increased from 10rem to give your longer text room to breathe */
-  justify-content: flex-start; /* The magic fix: forces left alignment instead of random spacing */
-  align-items: flex-start; /* Keeps the checkmark aligned with the top of the text */
-  gap: 1rem; /* Creates a clean, consistent gap between the checkmark and text */
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Very subtle border */
+  border-radius: 12px; /* Sleek pill shape */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%; 
+  box-sizing: border-box; /* Ensures padding doesn't break the grid */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              background-color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
+/* Adjusts the checkmark icon to fit the new badge */
 article .icon {
-  cursor: default;
+  height: 1.25rem; 
+  transition: all 0.3s ease;
+}
+
+article div h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Hover effect for individual skill badges */
+article:hover {
+  background: rgba(0, 123, 255, 0.05); /* Subtle blue tint */
+  border-color: #007BFF;
+  transform: translateY(-4px); /* Slight lift */
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.1);
+}
+
+/* Give the checkmark a subtle blue glow on hover */
+article:hover .icon {
+  filter: drop-shadow(0px 2px 4px rgba(0, 123, 255, 0.4));
 }
 
 /* PROJECTS SECTION */
@@ -424,7 +470,7 @@ article .icon {
   border-radius: 2rem;
   border: rgb(53, 53, 53) 0.1rem solid;
   border-color: rgb(163, 163, 163);
-  background: (250, 250, 250);
+  background: rgb(250, 250, 250);
   margin: 2rem auto;
   padding: 0.5rem;
 }
@@ -503,9 +549,21 @@ footer p {
 }
 
 /* 2. All Cards & Containers (About, Experience, Projects, Contact) */
-.details-container,
-.contact-info-upper-container {
-  transition: all 300ms ease;
+.details-container {
+  padding: 2.5rem 2rem; /* A bit more breathing room inside the cards */
+  flex: 1;
+  background: rgba(0, 123, 255, 0.2); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Creates a frosted glass effect */
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  border-radius: 24px; /* Softer, rounder corners */
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Crisp white edge */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              border-color 0.4s ease;
 }
 
 .details-container:hover,
@@ -561,6 +619,7 @@ a:hover,
 /* ========================================= */
 
 body {
+  cursor: url("./assets/mouse.svg"), auto; /* Custom terminal cursor */
   position: relative;
   overflow-x: hidden; /* Prevents horizontal scrolling from the blur */
 }
@@ -572,19 +631,16 @@ body::before {
   top: -10vh;
   left: -10vw;
   width: 110vw;
-  height: 80vh;
-  /* Complex radial gradients for the aurora colors */
+  height: 100vh;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.45) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 123, 255, 0.55) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(138, 43, 226, 0.35) 0%, transparent 50%);
-  background-size: 200% 200%; /* Makes the background larger so it can pan around */
+    radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 223, 255, 0.55) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(0, 023, 255, 0.35) 0%, transparent 50%);
+  background-size: 300% 300%; /* Makes the background larger so it can pan around */
     z-index: -1;
   pointer-events: none;
-  /* The new 15-second fluid animation */
   animation: liquid-aurora 5s infinite alternate ease-in-out;
 
-/* The updated mask with a built-in Gaussian Blur */
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
     mask-size: cover;
@@ -606,7 +662,6 @@ body::before {
   }
 }
 
-/* Makes the aurora gently pulse and shift */
 @keyframes aurora-breathe {
   0% { 
     opacity: 0.8; 
@@ -714,7 +769,6 @@ body::before {
 }
 
 /* REVEAL ANIMATIONS */
-/* REVEAL ANIMATIONS */
 .reveal {
   position: relative;
   transform: translateY(30px); /* Reduced from 50px */
@@ -729,7 +783,7 @@ body::before {
 }
 
 
-.cursor-glow {
+/* .cursor-glow {
   width: 150px;
   height: 150px;
   background: radial-gradient(circle, rgba(0, 123, 255, 0.25) 0%, transparent 70%);
@@ -737,11 +791,11 @@ body::before {
   top: 0;
   left: 0;
   border-radius: 50%;
-  pointer-events: none; /* Crucial: clicks go through it */
+  pointer-events: none; 
   z-index: 9998;
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease-out;
-}
+} */
 
 .project-img {
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -763,4 +817,156 @@ body::before {
   0% { border-color: transparent; }
   50% { border-color: #007BFF; }
   100% { border-color: transparent; }
+}
+
+/* --- Terminal Project Cards --- */
+.terminal-card {
+  background: #111111; /* Deep terminal black */
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #333;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  max-width: 700px; /* Stops the terminal from getting too wide */
+  margin: 0 auto 4rem auto; /* Centers the terminal and keeps the bottom gap */
+}
+
+.terminal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15); /* Subtle blue glow on hover */
+}
+
+/* Header UI */
+.terminal-header {
+  background: #252526; /* VS Code header color */
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #333;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  color: #858585;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* Body & Images */
+.terminal-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.terminal-image {
+  width: 100%;
+  height: auto; /* Allows the image to scale naturally without cropping */
+  aspect-ratio: 16/9; /* Keeps all project images a uniform widescreen size */
+  object-fit: cover; 
+  object-position: top; /* Ensures the top of the website/app is always visible */
+  border-bottom: 1px solid #333;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.terminal-card:hover .terminal-image {
+  opacity: 1;
+}
+
+/* Terminal Text */
+.terminal-text {
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  color: #e7e7e7;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-text p {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.command {
+  color: #9cc9fc; /* A nice bright terminal blue, or whatever color you prefer! */
+  font-weight: bold; /* Optional: makes it stand out more */
+}
+
+.prompt {
+  color: #4af626; /* Hacker green */
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.output {
+  color: #a9b7c6;
+  margin-bottom: 15px !important; /* Space before next command */
+  padding-left: 10px;
+  border-left: 2px solid #444; /* Gives a subtle blockquote feel to the description */
+}
+
+/* Terminal Buttons */
+.terminal-actions {
+  margin-top: auto; /* Pushes button to the bottom */
+  padding-top: 15px;
+}
+
+.terminal-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.terminal-btn.primary {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.terminal-btn.primary:hover {
+  background: #007BFF;
+  color: white;
+  border-color: #007BFF;
+}
+
+.terminal-btn.outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.terminal-btn.outline:hover {
+  background: rgba(255, 255, 255, 0.1);
 }

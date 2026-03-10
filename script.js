@@ -25,11 +25,11 @@ window.addEventListener("load", reveal); // Critical for Vercel deployments
 // Run once immediately
 reveal();
 
-const glow = document.querySelector('.cursor-glow');
-document.addEventListener('mousemove', (e) => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-});
+// const glow = document.querySelector('.cursor-glow');
+// document.addEventListener('mousemove', (e) => {
+//     glow.style.left = e.clientX + 'px';
+//     glow.style.top = e.clientY + 'px';
+// });
 
 const textElement = document.getElementById("typewriter");
 const professions = [
