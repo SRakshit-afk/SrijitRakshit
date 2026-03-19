@@ -1,0 +1,979 @@
+/* GENERAL */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  clip-path: inset(0 0 0 0);
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* 3. Ensure the hamburger menu doesn't push the screen right */
+.menu-links {
+  max-width: 90vw;
+  box-sizing: border-box;
+}
+
+p {
+  color: rgb(85, 85, 85);
+}
+
+/* TRANSITION */
+
+a,
+.btn {
+  transition: all 300ms ease;
+}
+
+/* DESKTOP NAV */
+
+nav,
+.nav-links {
+  display: flex;
+}
+
+nav {
+  justify-content: space-around;
+  align-items: center;
+  height: 17vh;
+}
+
+.nav-links {
+  gap: 2rem;
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  text-decoration-color: white;
+}
+
+a:hover {
+  color: grey;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: rgb(181, 181, 181);
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.logo:hover {
+  cursor: default;
+}
+
+/* HAMBURGER MENU */
+
+#hamburger-nav {
+  display: none;
+}
+
+.hamburger-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  cursor: pointer;
+  z-index: 10001;
+  position: relative; /* Stay above the menu links */
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: black; /* Ensure it's not white on white! */
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white; /* Ensure this is solid white */
+  width: fit-content;
+  min-width: 250px; 
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow to pop against the aurora */
+  border-radius: 2rem;
+  z-index: 9999; /* Forces it above everything else */
+}
+
+.menu-links.open {
+  max-height: 80vh; /* Increased to fit the button */
+  padding: 2rem;
+  gap: 1.5rem;
+  border: 1px solid rgba(0, 123, 255, 0.1); /* Subtle blue border */
+  overflow-y: auto;
+}
+
+.menu-links a {
+  display: block;
+  font-size: 1.5rem;
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Ensure the button doesn't float outside the modal */
+.menu-links .toggle-portfolio-btn {
+  position: relative;
+  margin: 0;
+  width: 100%;
+}
+
+.menu-links li {
+  list-style: none;
+  height: auto; 
+}
+
+.hamburger-icon.open span:first-child {
+  transform: rotate(45deg) translate(10px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+.hamburger-icon span:first-child {
+  opacity: 1;
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+/* SECTIONS */
+
+section {
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  box-sizing: border-box;
+  min-height: fit-content;
+}
+
+.section-container {
+  display: flex;
+}
+
+/* PROFILE SECTION */
+
+#profile {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  height: 80vh;
+}
+
+.section__pic-container {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+.section__text {
+  align-self: center;
+  text-align: center;
+  min-width: 450px;
+}
+
+.section__text p {
+  font-weight: 600;
+}
+
+.section__text__p1 {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.section__text__p2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  min-height: 2.5rem; /* Prevents vertical 'jumping' if lines wrap */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+#socials-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+/* ICONS */
+
+.icon {
+  cursor: pointer;
+  height: 2rem;
+}
+
+/* BUTTONS */
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+}
+
+.btn-color-1,
+.btn-color-2 {
+  border: rgb(53, 53, 53) 0.1rem solid;
+}
+
+.btn-color-1:hover,
+.btn-color-2:hover {
+  cursor: pointer;
+}
+
+.btn-color-1,
+.btn-color-2:hover {
+  background: rgb(53, 53, 53);
+  color: white;
+}
+
+.btn-color-1:hover {
+  background: rgb(0, 0, 0);
+}
+
+.btn-color-2 {
+  background: none;
+}
+
+.btn-color-2:hover {
+  border: rgb(255, 255, 255) 0.1rem solid;
+}
+
+.btn-container {
+  gap: 1rem;
+}
+
+/* ABOUT SECTION */
+
+#about {
+  position: relative;
+}
+
+.about-containers {
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.about-details-container {
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.about-containers,
+.about-details-container {
+  display: flex;
+}
+
+.about-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the 400x400 square without stretching */
+  border-radius: 2rem;
+}
+
+.arrow {
+  position: absolute;
+  right: -5rem;
+  bottom: 2.5rem;
+}
+
+.details-container {
+  padding: 1.5rem;
+  flex: 1;
+  background: white;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  text-align: center;
+}
+
+.section-container {
+  gap: 4rem;
+  height: 80%;
+}
+
+.section__pic-container {
+  display: flex;
+  height: 400px; /* Restores the desktop height */
+  width: 400px;  /* Restores the desktop width */
+  margin: auto;
+  flex-shrink: 0;
+}
+
+/* EXPERIENCE SECTION */
+
+#experience {
+  position: relative;
+}
+
+.experience-sub-title {
+  color: rgb(85, 85, 85);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.experience-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* --- UPGRADED SKILLS GRID --- */
+.article-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Forces exactly two neat columns */
+  gap: 1.2rem;
+  width: 100%;
+}
+
+article {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Very subtle border */
+  border-radius: 12px; /* Sleek pill shape */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%; 
+  box-sizing: border-box; /* Ensures padding doesn't break the grid */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              background-color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Adjusts the checkmark icon to fit the new badge */
+article .icon {
+  height: 1.25rem; 
+  transition: all 0.3s ease;
+}
+
+article div h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Hover effect for individual skill badges */
+article:hover {
+  background: rgba(0, 123, 255, 0.05); /* Subtle blue tint */
+  border-color: #007BFF;
+  transform: translateY(-4px); /* Slight lift */
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.1);
+}
+
+/* Give the checkmark a subtle blue glow on hover */
+article:hover .icon {
+  filter: drop-shadow(0px 2px 4px rgba(0, 123, 255, 0.4));
+}
+
+/* PROJECTS SECTION */
+
+#projects {
+  position: relative;
+}
+
+.color-container {
+  border-color: rgb(163, 163, 163);
+  background: rgb(250, 250, 250);
+}
+
+.project-img {
+  border-radius: 2rem;
+  width: 90%;
+  height: 90%;
+}
+
+.project-title {
+  margin: 1rem;
+  color: black;
+}
+
+.project-btn {
+  color: black;
+  border-color: rgb(163, 163, 163);
+}
+
+/* CONTACT */
+
+#contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.contact-info-upper-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  background: rgb(250, 250, 250);
+  margin: 2rem auto;
+  padding: 0.5rem;
+}
+
+.contact-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.contact-info-container p {
+  font-size: larger;
+}
+
+.contact-icon {
+  cursor: default;
+}
+
+.email-icon {
+  height: 2.5rem;
+}
+
+/* FOOTER SECTION */
+
+footer {
+  height: 26vh;
+  margin: 0 1rem;
+}
+
+footer p {
+  text-align: center;
+}
+
+/* PORTFOLIO TOGGLE BUTTON */
+.toggle-portfolio-btn {
+  padding: 0.5rem 1.25rem;
+  background-color: rgb(53, 53, 53);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: all 300ms ease;
+  margin-top: -0.25rem; /* Helps vertically align it with the text links */
+}
+
+.toggle-portfolio-btn:hover {
+  background-color: #007BFF; /* Electric Blue Accent! */
+  transform: scale(1.05);
+}
+
+/* Adjust mobile menu spacing for the new button */
+.menu-links .toggle-portfolio-btn {
+  font-size: 1.2rem; /* Slightly smaller for mobile screens */
+  padding: 0.8rem 1.5rem;
+  width: fit-content; /* Ensure it doesn't stretch weirdly */
+  margin-top: 1rem;
+}
+
+/* GLOBAL ACCENT COLOR: ELECTRIC BLUE        */
+/* ========================================= */
+
+/* 1. Section Subtitles & Job Title */
+.section__text__p1 {
+  color: #007BFF;
+  font-weight: 600;
+}
+
+.section__text__p2 {
+  color: #007BFF; 
+  font-weight: 600;
+}
+
+/* 2. All Cards & Containers (About, Experience, Projects, Contact) */
+.details-container {
+  padding: 2.5rem 2rem; /* A bit more breathing room inside the cards */
+  flex: 1;
+  background: rgba(0, 123, 255, 0.2); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Creates a frosted glass effect */
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  border-radius: 24px; /* Softer, rounder corners */
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Crisp white edge */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              border-color 0.4s ease;
+}
+
+.details-container:hover,
+.contact-info-upper-container:hover {
+  border-color: #007BFF;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15); 
+  transform: translateY(-5px); 
+}
+
+/* 3. Social & Arrow Icons Hover Effect */
+.icon {
+  transition: all 300ms ease;
+}
+
+.icon:hover {
+  filter: drop-shadow(0px 4px 6px rgba(0, 123, 255, 0.5));
+  transform: scale(1.1);
+}
+
+/* 4. Hamburger Menu Hover State */
+.hamburger-icon:hover span {
+  background-color: #007BFF;
+}
+
+/* 5. Navigation Links */
+a:hover,
+.menu-links a:hover {
+  color: #007BFF;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: #007BFF;
+}
+
+/* 6. Buttons */
+.btn-color-1:hover {
+  background: #007BFF;
+  border-color: #007BFF;
+  color: white;
+}
+
+.btn-color-2:hover {
+  border: #007BFF 0.1rem solid;
+  color: #007BFF;
+}
+
+.toggle-portfolio-btn:hover {
+  background-color: #007BFF;
+  transform: scale(1.05);
+}
+
+/* ========================================= */
+/* TOP-DOWN VIBRANT AURORA BACKGROUND        */
+/* ========================================= */
+
+body {
+  cursor: url("./assets/mouse.svg"), auto; /* Custom terminal cursor */
+  position: relative;
+  overflow-x: hidden; /* Prevents horizontal scrolling from the blur */
+}
+
+/* The Aurora Canvas */
+body::before {
+  content: "";
+  position: absolute;
+  top: -10vh;
+  left: -10vw;
+  width: 110vw;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 223, 255, 0.55) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(0, 023, 255, 0.35) 0%, transparent 50%);
+  background-size: 300% 300%; /* Makes the background larger so it can pan around */
+    z-index: -1;
+  pointer-events: none;
+  animation: liquid-aurora 5s infinite alternate ease-in-out;
+
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: cover;
+    mask-position: bottom;
+}
+
+@keyframes liquid-aurora {
+  0% {
+    background-position: 0% 0%;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    background-position: 100% 100%;
+    transform: scale(1.05) rotate(1deg) translateY(20px);
+  }
+  100% {
+    background-position: 0% 100%;
+    transform: scale(1) rotate(-1deg) translateX(-20px);
+  }
+}
+
+@keyframes aurora-breathe {
+  0% { 
+    opacity: 0.8; 
+    transform: scale(1); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1.05) translateY(20px); 
+  }
+}
+
+/* Adds vertical spacing between the project description and the buttons */
+.color-container p {
+  margin-bottom: 2rem; /* Adjust this value for more/less space */
+  min-height: 4rem;    /* Keeps the button rows aligned even if text length varies */
+}
+
+/* Fixes the 'Live Site' text color and alignment */
+.btn-color-1.project-btn {
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensures the container stays organized */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.section__text__hobby {
+  font-size: 1rem; /* Smaller than the main title */
+  color: rgb(85, 85, 85); /* A softer grey to provide hierarchy */
+  font-weight: 500;
+  margin-top: -0.5rem; /* Pulls it closer to the main title */
+  margin-bottom: 1rem;
+}
+
+/* FLOATING SOCIAL SIDEBAR */
+
+.floating-socials {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 2000; /* Higher than aurora and nav */
+}
+
+.floating-icon {
+  background-color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 300ms ease;
+  border: 1px solid #e5e5e5;
+}
+
+.floating-icon img {
+  height: 22px;
+  width: 22px;
+}
+
+.floating-icon:hover {
+  transform: translateY(-5px);
+  background-color: #007BFF; /* Your accent color */
+  border-color: #007BFF;
+}
+
+.floating-icon:hover img {
+  filter: brightness(0) invert(1); /* Turns black icons white on hover */
+}
+
+/* Hide on very small screens to avoid overlapping content */
+@media screen and (max-width: 600px) {
+  .floating-socials {
+    display: none;
+  }
+}
+
+/* Forces the 'Ghost Button' to become visible in the mobile menu */
+.menu-links .toggle-portfolio-btn {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: flex !important; /* Ensures it takes up space */
+  background-color: #353535 !important; /* Solid Dark Grey */
+  color: white !important; /* Solid White Text */
+  z-index: 10000 !important; /* Highest possible layer */
+  position: relative !important;
+  border: none !important;
+}
+
+/* Ensure the icon inside is also visible */
+.menu-links .toggle-portfolio-btn span,
+.menu-links .toggle-portfolio-btn::before {
+  color: white !important;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  position: relative;
+  transform: translateY(30px); /* Reduced from 50px */
+  opacity: 0;
+  transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  will-change: transform, opacity; /* Helps the browser pre-calculate the animation */
+}
+
+.reveal.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+/* .cursor-glow {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0.25) 0%, transparent 70%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none; 
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+} */
+
+.project-img {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.details-container:hover .project-img {
+  transform: scale(1.05) rotate(1deg);
+}
+
+/* TYPEWRITER CURSOR EFFECT */
+#typewriter {
+  color: #007BFF; /* Matches your Electric Blue accent */
+  border-right: 3px solid #007BFF; /* The cursor */
+  padding-right: 5px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0% { border-color: transparent; }
+  50% { border-color: #007BFF; }
+  100% { border-color: transparent; }
+}
+
+/* --- Terminal Project Cards --- */
+.terminal-card {
+  background: #111111; /* Deep terminal black */
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #333;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  max-width: 700px; /* Stops the terminal from getting too wide */
+  margin: 0 auto 4rem auto; /* Centers the terminal and keeps the bottom gap */
+}
+
+.terminal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15); /* Subtle blue glow on hover */
+}
+
+/* Header UI */
+.terminal-header {
+  background: #252526; /* VS Code header color */
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #333;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  color: #858585;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* Body & Images */
+.terminal-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.terminal-image {
+  width: 100%;
+  height: auto; /* Allows the image to scale naturally without cropping */
+  aspect-ratio: 16/9; /* Keeps all project images a uniform widescreen size */
+  object-fit: cover; 
+  object-position: top; /* Ensures the top of the website/app is always visible */
+  border-bottom: 1px solid #333;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.terminal-card:hover .terminal-image {
+  opacity: 1;
+}
+
+/* Terminal Text */
+.terminal-text {
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  color: #e7e7e7;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-text p {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.command {
+  color: #9cc9fc; /* A nice bright terminal blue, or whatever color you prefer! */
+  font-weight: bold; /* Optional: makes it stand out more */
+}
+
+.prompt {
+  color: #4af626; /* Hacker green */
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.output {
+  color: #a9b7c6;
+  margin-bottom: 15px !important; /* Space before next command */
+  padding-left: 10px;
+  border-left: 2px solid #444; /* Gives a subtle blockquote feel to the description */
+}
+
+/* Terminal Buttons */
+.terminal-actions {
+  margin-top: auto; /* Pushes button to the bottom */
+  padding-top: 15px;
+}
+
+.terminal-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.terminal-btn.primary {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.terminal-btn.primary:hover {
+  background: #007BFF;
+  color: white;
+  border-color: #007BFF;
+}
+
+.terminal-btn.outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.terminal-btn.outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

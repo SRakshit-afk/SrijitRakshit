@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srijit Rakshit | Photography</title>
+    <link rel="icon" type="image/png" href="./assets/camera.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+    <link rel="stylesheet" href="photography.css">
+</head>
+<body>
+    <nav id="desktop-nav">
+        <div class="logo">Srijit Rakshit</div>
+        <ul class="nav-links">
+            <li><button class="toggle-portfolio-btn" onclick="location.href='index.html'">💻 Developer</button></li>
+        </ul>
+    </nav>
+
+    <nav id="hamburger-nav">
+  <div class="logo">Srijit Rakshit</div>
+  <div class="hamburger-menu">
+    <div class="hamburger-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-links">
+        <button class="toggle-portfolio-btn" onclick="location.href='index.html'">
+          💻 Developer
+        </button>
+    </div>
+  </div>
+</nav>
+
+    <main class="gallery-wrapper">
+
+        <section id="photo-about" class="reveal">
+            <div class="photo-about-container">
+                <div class="photo-about-text">
+                    <p class="section__text__p1">The Vision</p>
+                    <h1 class="title" style="text-align: left; margin-bottom: 2rem;">Behind the Lens</h1>
+                    
+                    <p class="about-desc">
+                        I believe photography is more than just capturing light—it's about preserving time. My vision is drawn to the rhythm of the streets. I focus on candid narratives, the interplay of stark light and shadow, and the raw honesty of unedited human moments. For me, a great photograph doesn't just show a location; it captures the fleeting pulse of the city. I am also a devoted analog photographer, finding beauty in the imperfections of film and the deliberate pace of manual shooting. Each frame is a testament to the art of slowing down and truly seeing the world around us.
+                    </p>
+                    
+                    <div class="photo-about-roles">
+                        <span class="role-badge">Street Photographer</span>
+                        <span class="role-badge">Black & White Enthusiast</span>
+                    </div>
+                </div>
+                
+                <div class="photo-about-img-container">
+                    <img src="./assets/pfp-photography.webp" alt="Srijit Rakshit behind the lens" class="photo-about-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="series" class="reveal">
+            <p class="section__text__p1">Collections</p>
+            <h1 class="title">Photo Series</h1>
+            
+            <div class="series-container">
+                <div class="series-info">
+                    <h2>01. Monochrome Benaras</h2>
+                    <p>बनारस... रंग एक, एहसास अनेक। <br>Benaras... one color, countless feelings.
+                        Kashi doesn't need a spectrum to be beautiful. It only needs the light that has touched its stones for centuries. Here is Benaras, rendered in its most raw and honest form.</p>
+                </div>
+                
+                <div class="series-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSeries(-1, 'series1')">
+                      <img src="./assets/left.png" alt="scroll left">
+                  </button>
+                    
+                    <div class="series-horizontal-scroll" id="series1">
+                        <img src="./assets/MonochromeBenaras/MonochromeBenaras-1.jpg" alt="Series Image 1" class="series-img">
+                        <img src="./assets/MonochromeBenaras/MonochromeBenaras-2.jpg" alt="Series Image 2" class="series-img">
+                        <img src="./assets/MonochromeBenaras/MonochromeBenaras-3.jpg" alt="Series Image 3" class="series-img">
+                        <img src="./assets/MonochromeBenaras/MonochromeBenaras-4.jpg" alt="Series Image 1" class="series-img">
+                        <img src="./assets/MonochromeBenaras/MonochromeBenaras-5.jpg" alt="Series Image 2" class="series-img">
+                        <img src="./assets/MonochromeBenaras/MonochromeBenaras-6.jpg" alt="Series Image 3" class="series-img">
+                    </div>
+
+                    <button class="scroll-btn right" onclick="scrollSeries(1, 'series1')">
+                        <img src="./assets/right.png" alt="scroll right">
+                    </button>
+                </div>
+            </div>
+
+            <!-- <div class="series-container">
+              <div class="series-info">
+                  <h2>02. Your New Series Title</h2>
+                  <p>A description of this new, amazing collection of analog photography.</p>
+              </div>
+              
+              <div class="series-wrapper">
+                  <button class="scroll-btn left" onclick="scrollSeries(-1, 'series2')">
+                      <img src="./assets/left.png" alt="scroll left">
+                  </button>
+                  
+                  <div class="series-horizontal-scroll" id="series2">
+                      <img src="./assets/new-series-1.webp" alt="Series Image 1" class="series-img">
+                      <img src="./assets/new-series-2.webp" alt="Series Image 2" class="series-img">
+                      <img src="./assets/new-series-3.webp" alt="Series Image 3" class="series-img">
+                  </div>
+
+                  <button class="scroll-btn right" onclick="scrollSeries(1, 'series2')">
+                      <img src="./assets/right.png" alt="scroll right">
+                  </button>
+              </div>
+          </div> -->
+        </section>
+
+        <section id="independents" class="reveal">
+            <p class="section__text__p1">Selected Works</p>
+            <h1 class="title">Independent Frames</h1>
+            <div class="solo-grid">
+                <figure class="solo-item">
+                    <img src="./assets//Singles/singles-1.webp" alt="Solo frame">
+                    <figcaption>Two Motions, Kolkata. 2025</figcaption>
+                </figure>
+                <figure class="solo-item">
+                    <img src="./assets/Singles/singles-2.webp" alt="Solo frame">
+                    <figcaption>Maa Durga, Kolkata. 2025</figcaption>
+                </figure>
+                <figure class="solo-item">
+                    <img src="./assets//Singles/singles-3.webp" alt="Solo frame">
+                    <figcaption>The Lines of Light. 2025</figcaption>
+                </figure>
+                <figure class="solo-item">
+                    <img src="./assets/Singles/singles-4.webp" alt="Solo frame">
+                    <figcaption>The Creator, Durgapur. 2025</figcaption>
+                </figure>
+                <figure class="solo-item">
+                    <img src="./assets//Singles/singles-5.webp" alt="Solo frame">
+                    <figcaption>Mesmerized in Devotion, Benaras. 2025</figcaption>
+                </figure>
+                <figure class="solo-item">
+                    <img src="./assets/Singles/singles-6.webp" alt="Solo frame">
+                    <figcaption>Fierce Racing, Canning. 2025</figcaption>
+                </figure>
+                <figure class="solo-item">
+                    <img src="./assets//Singles/singles-7.webp" alt="Solo frame">
+                    <figcaption>Walls of Devotion, Kolkata. 2025</figcaption>
+                </figure>
+                <figure class="solo-item">
+                    <img src="./assets/Singles/singles-8.webp" alt="Solo frame">
+                    <figcaption>Sunset at the Mountains, Dhanaulti, Uttarakhand. 2025</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="journal" class="reveal">
+            <p class="section__text__p1">Thoughts</p>
+            <h1 class="title">Photography Journal</h1>
+            
+            <div class="journal-wrapper">
+                <article class="journal-entry">
+                    <div class="entry-meta">
+                        <span class="entry-number">08</span>
+                        <span class="entry-date">NOVEMBER '25</span>
+                    </div>
+                    
+                    <div class="entry-main">
+                        <h3 class="entry-title">Harmony of Light and Time <span class="italic">The Art of Slow Shutters</span></h3>
+                        <p class="entry-excerpt">Here stillness meets motion and stories unfold in the gentle blur of moments passing. Each frame breathes, tracing the ghost of a step, a wave, a whisper of wind, transforming motion into memory. It is not the clarity that speaks, but the rhythm of the unseen.</p>
+                        <a href="https://www.behance.net/gallery/238137897/Harmony-of-Light-andTime-The-Art-of-Slow-Shutters" target="_blank" class="entry-link">Read on Behance —</a>
+                    </div>
+
+                    <div class="entry-preview">
+                        <img src="/assets/Journal1.jpg" alt="Preview">
+                    </div>
+                </article>
+
+                <!-- <article class="journal-entry entry-reverse">
+                    <div class="entry-meta">
+                        <span class="entry-number">02</span>
+                        <span class="entry-date">FEBRUARY '26</span>
+                    </div>
+                    
+                    <div class="entry-main">
+                        <h3 class="entry-title">Framing <span class="italic">JUPC</span></h3>
+                        <p class="entry-excerpt">Managing Jadavpur University's Photography Club through a unique visual lens.</p>
+                        <a href="https://www.behance.net/" target="_blank" class="entry-link">Read on Behance —</a>
+                    </div>
+
+                    <div class="entry-preview">
+                        <img src="./assets/solo-1.webp" alt="Preview">
+                    </div>
+                </article> -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &#169; 2026 Srijit Rakshit. All Rights Reserved.</p>
+    </footer>
+
+    <div class="cursor-glow"></div>
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script type="module" src="./script.js"></script>
+</body>
+</html>
