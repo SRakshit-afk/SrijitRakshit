@@ -77,6 +77,46 @@
   }
   
   /* --- Skills Section Mobile Fix --- */
+
+  @media screen and (max-width: 600px) {
+    /* 1. Force the container holding the two big cards to stack vertically */
+  #experience .about-containers,
+  #experience .experience-details-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 2rem !important;
+  }
+
+  /* 2. Strip away the 'flex: 1' so the cards stop trying to share a row */
+  #experience .details-container {
+    flex: none !important; 
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Ditch the grid completely on mobile and use a simple vertical list */
+  #experience .article-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 1rem !important;
+  }
+
+  /* 4. Ensure the individual skill badges span the full width of the card */
+  #experience article {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+    /* Ensure the titles don't get cut off */
+    article div h3 {
+      font-size: 1rem;
+      white-space: normal; /* Allows text to wrap if it's too long */
+    }
+  }
   
   /* 1. Stop the main glass boxes from spilling off the screen */
   .details-container {
