@@ -1,4 +1,13 @@
-function toggleMenu() {
+import * as THREE from 'three';
+import { initAurora } from './aurora.js'; // Import the new module
+
+// Start the OGL Aurora!
+initAurora('aurora-bg'); 
+
+// ... rest of your existing script.js code ...
+
+// Add 'window.toggleMenu =' so the HTML can "see" it again
+window.toggleMenu = function toggleMenu() {
   const menu = document.querySelector(".menu-links");
   const icon = document.querySelector(".hamburger-icon");
   menu.classList.toggle("open");
@@ -36,6 +45,7 @@ const professions = [
   "CS Undergraduate",
   "Frontend Developer",
   "UI/UX Enthusiast",
+  "Figma Fanatic",
 ];
 
 let professionIndex = 0;
@@ -111,4 +121,18 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflow = "auto";
         }
     }
+});
+
+// Add this to your script.js
+document.addEventListener('mousemove', (e) => {
+  const cards = document.querySelectorAll('.details-container, .terminal-card');
+  
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  });
 });

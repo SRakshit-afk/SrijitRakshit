@@ -7,13 +7,24 @@
   padding: 0;
 }
 
+:root {
+  --primary-blue: #007BFF;
+  --accent-yellow: #ffe23b;
+  --card-glass: rgba(255, 255, 255, 0.7);
+  --soft-white: #f8f9fa;
+  --text-dark: #333333;
+  --text-grey: #555555;
+}
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: var(--soft-white);
+  color: var(--text-dark);
   overflow-x: hidden;
   width: 100%;
   clip-path: inset(0 0 0 0);
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -69,8 +80,8 @@ a {
 }
 
 a:hover {
-  color: grey;
-  text-decoration: underline;
+  color: var(--primary-blue) !important;
+  text-decoration-color: var(--primary-blue) !important;
   text-underline-offset: 1rem;
   text-decoration-color: rgb(181, 181, 181);
 }
@@ -109,7 +120,7 @@ a:hover {
   display: block;
   height: 2px;
   width: 100%;
-  background-color: black; /* Ensure it's not white on white! */
+  background-color: var(--primary-blue);; /* Ensure it's not white on white! */
   transition: all 0.3s ease-in-out;
 }
 
@@ -398,34 +409,32 @@ article {
   align-items: center;
   gap: 1rem;
   padding: 0.8rem 1.2rem;
-  background: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
-  border: 1px solid rgba(0, 0, 0, 0.05); /* Very subtle border */
-  border-radius: 12px; /* Sleek pill shape */
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Use a very light tint of your blue instead of solid blue */
+  background: rgba(0, 123, 255, 0.05); 
+  border: 1px solid rgba(0, 123, 255, 0.1);
+  border-radius: 12px;
   width: 100%; 
-  box-sizing: border-box; /* Ensures padding doesn't break the grid */
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-              background-color 0.3s ease,
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
-}
-
-/* Adjusts the checkmark icon to fit the new badge */
-article .icon {
-  height: 1.25rem; 
-  transition: all 0.3s ease;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 article div h3 {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-dark); /* Keeps text dark for contrast */
+  transition: color 0.3s ease;
+}
+
+article .icon {
+  height: 1.25rem;
+  /* Make the checkmark your signature blue */
+  filter: none; 
 }
 
 /* Hover effect for individual skill badges */
 article:hover {
-  background: rgba(0, 123, 255, 0.05); /* Subtle blue tint */
-  border-color: #007BFF;
+  background: rgba(0, 123, 255, 0.5); /* Slightly stronger blue on hover */
+  border-color: var(--accent-yellow);
   transform: translateY(-4px); /* Slight lift */
   box-shadow: 0 8px 15px rgba(0, 123, 255, 0.1);
 }
@@ -557,27 +566,70 @@ footer p {
 
 /* 2. All Cards & Containers (About, Experience, Projects, Contact) */
 .details-container {
-  padding: 2.5rem 2rem; /* A bit more breathing room inside the cards */
-  flex: 1;
-  background: rgba(0, 123, 255, 0.2); /* Semi-transparent white */
-  backdrop-filter: blur(10px); /* Creates a frosted glass effect */
-  -webkit-backdrop-filter: blur(12px); /* Safari support */
-  border-radius: 24px; /* Softer, rounder corners */
-  border: 1px solid rgba(255, 255, 255, 0.8); /* Crisp white edge */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  /* 1. Layout & Glassmorphism */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1.5rem;
+  flex: 1;
+  background: var(--card-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  
+  /* 2. Border & Masking */
+  border: 1px solid rgba(0, 123, 255, 0.1); 
+  overflow: hidden; /* Crucial: Clips the moving glow to the card corners */
+  
+  /* 3. Transitions */
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
               box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
               border-color 0.4s ease;
+
+  /* 4. Mouse Coordinates (Updated by JS) */
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+}
+/* 5. The Spotlight Pseudo-Element */
+.details-container::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  /* Adjust the 600px to make the glow wider or tighter */
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(0, 123, 255, 0.15), 
+    rgba(255, 226, 59, 0.1), 
+    transparent 40%
+  );
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
-.details-container:hover,
+/* 6. Interaction States */
+.details-container:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-blue);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); */
+}
+
+/* 7. Ensure Content Stays Above Glow */
+.details-container > * {
+  position: relative;
+  z-index: 2;
+}
+
 .contact-info-upper-container:hover {
-  border-color: #007BFF;
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15); 
+  border-color: var(--accent-yellow); /* Glows yellow on hover */
+  box-shadow: 0 10px 30px rgba(255, 226, 59, 0.2); 
   transform: translateY(-5px); 
+
+  box-shadow: 
+    -10px 10px 30px rgba(0, 123, 255, 0.2), 
+    10px -10px 30px rgba(255, 226, 59, 0.15);
 }
 
 /* 3. Social & Arrow Icons Hover Effect */
@@ -592,28 +644,48 @@ footer p {
 
 /* 4. Hamburger Menu Hover State */
 .hamburger-icon:hover span {
-  background-color: #007BFF;
+  background-color: var(--accent-yellow);
 }
 
 /* 5. Navigation Links */
 a:hover,
 .menu-links a:hover {
-  color: #007BFF;
+  color: var(--primary-blue) !important;
   text-decoration: underline;
   text-underline-offset: 1rem;
   text-decoration-color: #007BFF;
 }
 
 /* 6. Buttons */
-.btn-color-1:hover {
-  background: #007BFF;
-  border-color: #007BFF;
+/* Primary Button (Fill) */
+.btn-color-1 {
+  background: var(--primary-blue);
   color: white;
+  border: 1px solid var(--primary-blue);
+}
+
+.btn-color-1:hover {
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  border-color: var(--accent-yellow);
+  box-shadow: 0 8px 20px rgba(255, 226, 59, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Secondary Button (Outline) */
+.btn-color-2 {
+  background: transparent;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+  transition: all 300ms ease;
 }
 
 .btn-color-2:hover {
-  border: #007BFF 0.1rem solid;
-  color: #007BFF;
+  background-color: var(--accent-yellow) !important;;
+  color: var(--text-dark);
+  border-color: var(--accent-yellow) !important;
+  box-shadow: 0 8px 20px rgba(255, 226, 59, 0.3);
+  transform: translateY(-3px);
 }
 
 .toggle-portfolio-btn:hover {
@@ -621,9 +693,6 @@ a:hover,
   transform: scale(1.05);
 }
 
-/* ========================================= */
-/* TOP-DOWN VIBRANT AURORA BACKGROUND        */
-/* ========================================= */
 
 body {
   cursor: url("./assets/mouse.svg"), auto; /* Custom terminal cursor */
@@ -631,53 +700,31 @@ body {
   overflow-x: hidden; /* Prevents horizontal scrolling from the blur */
 }
 
-/* The Aurora Canvas */
-body::before {
-  content: "";
+ /* ========================================= */
+/* TOP-DOWN VIBRANT AURORA BACKGROUND        */
+/* ========================================= */
+
+/* --- NEW OGL AURORA BACKGROUND --- */
+#aurora-bg {
   position: absolute;
-  top: -10vh;
-  left: -10vw;
-  width: 110vw;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.45) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 223, 255, 0.55) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(0, 023, 255, 0.35) 0%, transparent 50%);
-  background-size: 300% 300%; /* Makes the background larger so it can pan around */
-    z-index: -1;
+  z-index: -3; /* Put it at the very, very back */
   pointer-events: none;
-  animation: liquid-aurora 5s infinite alternate ease-in-out;
-
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='15'/%3E%3C/filter%3E%3Cpath fill='black' filter='url(%23b)' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-    mask-size: cover;
-    mask-position: bottom;
+  background-color: #f8f9fa; /* Safe fallback background color */
 }
 
-@keyframes liquid-aurora {
-  0% {
-    background-position: 0% 0%;
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    background-position: 100% 100%;
-    transform: scale(1.05) rotate(1deg) translateY(20px);
-  }
-  100% {
-    background-position: 0% 100%;
-    transform: scale(1) rotate(-1deg) translateX(-20px);
-  }
-}
-
-@keyframes aurora-breathe {
-  0% { 
-    opacity: 0.8; 
-    transform: scale(1); 
-  }
-  100% { 
-    opacity: 1; 
-    transform: scale(1.05) translateY(20px); 
-  }
+/* Update your Three.js canvas just to be safe */
+#bg-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2; /* Sits directly in front of the Aurora, but behind content */
+  pointer-events: none;
 }
 
 /* Adds vertical spacing between the project description and the buttons */
@@ -814,8 +861,8 @@ body::before {
 
 /* TYPEWRITER CURSOR EFFECT */
 #typewriter {
-  color: #007BFF; /* Matches your Electric Blue accent */
-  border-right: 3px solid #007BFF; /* The cursor */
+  color: var(--primary-blue); 
+  border-right: 3px solid var(--accent-yellow); /* The cursor */
   padding-right: 5px;
   animation: blink 0.7s infinite;
 }
@@ -827,23 +874,59 @@ body::before {
 }
 
 /* --- Terminal Project Cards --- */
+/* --- UPDATED TERMINAL CARD WITH SPOTLIGHT --- */
 .terminal-card {
-  background: #111111; /* Deep terminal black */
+  position: relative;
+  background: #111111; /* Keep the deep terminal black */
   border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #333;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Clips the spotlight to the card's rounded corners */
+  border: 1px solid rgba(0, 123, 255, 0.2); /* Subdued Blue border baseline */
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
-  max-width: 700px; /* Stops the terminal from getting too wide */
-  margin: 0 auto 4rem auto; /* Centers the terminal and keeps the bottom gap */
+  max-width: 700px; 
+  margin: 0 auto 4rem auto;
+
+  /* Mouse coordinates initialized for the JS Bridge */
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+  z-index: 1;
 }
 
+/* The Interactive Glow Layer */
+.terminal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  /* Uses a sharper blue-to-yellow gradient for the dark terminal background */
+  background: radial-gradient(
+    500px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(0, 123, 255, 0.25), 
+    rgba(255, 226, 59, 0.15), 
+    transparent 60%
+  );
+  z-index: -1; /* Sits behind the code and images */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+/* Interaction States */
 .terminal-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15); /* Subtle blue glow on hover */
+  transform: translateY(-8px);
+  border-color: var(--accent-yellow); /* Border turns yellow on hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.terminal-card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure the terminal UI stays on top of the glow */
+.terminal-header, .terminal-body {
+  position: relative;
+  z-index: 2;
 }
 
 /* Header UI */
@@ -921,12 +1004,12 @@ body::before {
 }
 
 .command {
-  color: #9cc9fc; /* A nice bright terminal blue, or whatever color you prefer! */
+  color: var(--primary-blue); /* A nice bright terminal blue, or whatever color you prefer! */
   font-weight: bold; /* Optional: makes it stand out more */
 }
 
 .prompt {
-  color: #4af626; /* Hacker green */
+  color: var(--accent-yellow); /* Hacker green */
   font-weight: bold;
   margin-right: 8px;
 }
@@ -957,15 +1040,20 @@ body::before {
 }
 
 .terminal-btn.primary {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  background: var(--accent-yellow); /* Aurora Yellow */
+  color: var(--text-dark) !important; /* Force dark text for readability */
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important; /* Removes blue underline */
 }
 
 .terminal-btn.primary:hover {
-  background: #007BFF;
-  color: white;
-  border-color: #007BFF;
+  background: var(--primary-blue) !important; /* Your Electric Blue */
+  color: white !important; /* Force white text on blue background */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
 }
 
 .terminal-btn.outline {
@@ -976,4 +1064,46 @@ body::before {
 
 .terminal-btn.outline:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+#bg-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2; /* Keeps it behind the Aurora gradient (-1) */
+  pointer-events: none; /* Crucial: lets you click the buttons over it */
+}
+
+/* The Spotlight Layer */
+.details-container::before, 
+.terminal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0px; /* Covers the entire card */
+  /* This uses your Blue and Yellow variables in a dynamic gradient */
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(0, 123, 255, 0.15), 
+    rgba(255, 226, 59, 0.1), 
+    transparent 40%
+  );
+  z-index: 1; /* Sits above background, below text */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+/* Show the glow only on hover */
+.details-container:hover::before, 
+.terminal-card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure all current card content stays above the new glow layer */
+.details-container > *, 
+.terminal-card > * {
+  position: relative;
+  z-index: 2;
 }
