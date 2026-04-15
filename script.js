@@ -54,6 +54,10 @@ let isDeleting = false;
 let typeSpeed = 300;
 
 function typeEffect() {
+  if (!textElement) {
+    return;
+  }
+
   const currentProfession = professions[professionIndex];
   
   if (isDeleting) {
@@ -82,15 +86,20 @@ function typeEffect() {
 }
 
 // Start the effect
-document.addEventListener("DOMContentLoaded", typeEffect);
+if (textElement) {
+  document.addEventListener("DOMContentLoaded", typeEffect);
+}
 
 function scrollSeries(direction, seriesId) {
-    const container = document.getElementById(seriesId);
-    if(container) {
-        const scrollAmount = container.clientWidth * 0.8;
-        container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-    }
+  const container = document.getElementById(seriesId);
+  if (container) {
+    const scrollAmount = container.clientWidth * 0.8;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  }
 }
+
+// Expose the handler for inline onclick usage from HTML files loaded via Vite modules.
+window.scrollSeries = scrollSeries;
 
 document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById("lightbox");
